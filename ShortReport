@@ -1,0 +1,35 @@
+Short Report on Implementation Choices & Challenges
+
+ 1. Data Collection & Preprocessing
+   - Dataset Choice: I used a sample dataset from Kaggle, which contains booking records in CSV format. The dataset includes fields like booking date, cancellation status, user location, lead time, revenue, and booking price—necessary for performing analytics.
+   - Preprocessing: The dataset was cleaned by handling missing values using imputation (mean for numerical fields, mode for categorical fields). Inconsistent date formats were normalized using the `pandas.to_datetime()` method, and categorical data (such as booking status and location) was encoded using `LabelEncoder` to make it suitable for analytical processes.
+
+ 2. Analytics & Reporting
+   - Revenue Trends Over Time: I used `pandas` to group data by month/year and computed the total revenue per month. Visualizations were created using `Matplotlib` and `seaborn` to display the revenue trends over time.
+   - Cancellation Rate: The cancellation rate was calculated as the percentage of cancelled bookings out of the total number of bookings. This was computed by dividing the count of cancelled bookings by the total bookings and multiplying by 100.
+   - Geographical Distribution: I aggregated data by location and plotted it on a map using `geopandas` to display the distribution of bookings across different regions.
+   - Booking Lead Time Distribution: I calculated the difference between the booking date and the check-in date to determine lead time. A histogram was generated using `seaborn` to visualize the distribution.
+   - Additional Analytics: I added the analysis of the average booking price, which was computed by averaging the price column in the dataset.
+
+ 3. Retrieval-Augmented Question Answering (RAG)
+   - Vector Database Choice: I chose FAISS for its efficiency in handling large-scale vector similarity search tasks. The booking data was converted into embeddings using a pre-trained model like GPT-Neo and stored in FAISS for fast retrieval.
+   - Question Answering System: The LLM was integrated with the RAG approach to answer user queries. For example, queries like “Show me total revenue for July 2017” were parsed, and the appropriate data was fetched by querying FAISS for the relevant embeddings. The LLM was fine-tuned to extract answers from the retrieved data.
+   - Challenges: 
+     - Embedding quality: Ensuring that the embeddings accurately represent the data required some tuning.
+     - Query processing: Parsing user queries correctly to ensure accurate data retrieval from the vector store.
+
+4. API Development
+   - API Framework Choice: I used FastAPI due to its speed and ease of use. FastAPI also provides built-in support for asynchronous operations, making it suitable for handling large volumes of data and API requests.
+   - Endpoints: 
+     - POST /analytics: This endpoint accepts booking data and returns the analytics reports. It calls the functions implemented for each report and returns the results as JSON.
+     - POST /ask: This endpoint processes user queries, runs the RAG system to retrieve relevant data, and generates answers using the LLM. 
+   - Challenges: Ensuring the API was able to handle different types of requests and optimize the response time for large datasets required fine-tuning the retrieval mechanism.
+
+ 5. Performance Evaluation
+   - Q&A Accuracy: The accuracy of the Q&A responses was evaluated by comparing the output of the system with expected results for a set of test queries. Since the LLM is open-source, fine-tuning was necessary to improve its performance on the domain-specific data (booking-related questions).
+   - API Response Time: The response times were measured using benchmarking tools like `Locust` and optimized by caching frequently queried data and utilizing batch processing for large datasets.
+   - Challenges: 
+     - Handling latency: Ensuring low latency for vector searches and query response was critical, especially with large datasets and real-time requirements.
+
+Conclusion
+This project involved multiple steps from data preprocessing and analytics to building an efficient question-answering system using RAG and vector databases. The main challenges revolved around ensuring accurate data embeddings, query handling, and optimizing the API for speed. Despite these challenges, the system successfully generates valuable insights and answers user queries about the booking data.
