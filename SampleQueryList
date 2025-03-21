@@ -1,0 +1,55 @@
+Sample Test Queries & Expected Answers
+General Booking Queries
+Query:
+"How many bookings were made last week?"
+Expected Answer:
+"The number of bookings made last week was 235."
+
+Query:
+"What is the total revenue generated from bookings this month?"
+Expected Answer:
+"The total revenue for this month is $12,540, as per the precomputed data."
+
+User-Specific Queries
+Query:
+"How many bookings did user ID 12345 make?"
+Expected Answer:
+"User ID 12345 has made 5 bookings, based on stored insights."
+
+Query:
+"What is the status of booking ID 67890?"
+Expected Answer:
+"Booking ID 67890 is confirmed."
+
+Cancellation and Refund Queries
+Query:
+"How many bookings were canceled this month?"
+Expected Answer:
+"A total of 45 bookings were canceled this month, as recorded in the insights database."
+
+Query:
+"Which bookings were canceled on March 15, 2025?"
+Expected Answer:
+"The following bookings were canceled on March 15, 2025: [Booking ID 10123, Booking ID 10456, Booking ID 10789]."
+
+Date and Location-Based Queries
+Query:
+"Which city had the highest number of bookings last week?"
+Expected Answer:
+"New York had the highest number of bookings last week, with 312 confirmed reservations."
+
+Query:
+"What was the most booked hotel in Mumbai in March 2025?"
+Expected Answer:
+"The most booked hotel in Mumbai in March 2025 was Taj Mumbai."
+
+Non-Mathematical Insights Queries
+Query:
+"List all bookings made for April 10, 2025."
+Expected Answer:
+"Bookings made for April 10, 2025, include [Booking ID 21012, Booking ID 21034, Booking ID 21089]."
+
+Query:
+"Which users booked multiple stays in March 2025?"
+Expected Answer:
+"The following users made multiple bookings in March 2025: [User ID 12345, User ID 67890, User ID 34567]."
