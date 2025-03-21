@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-"""Booking_Analytics_&_QA_System.ipynb
 import gdown
 import os
 
@@ -29,9 +28,6 @@ from langchain.chains import RetrievalQA
 from transformers import pipeline
 
 # 1. Data Collection & Preprocessing
-
-# Assuming you have a Kaggle dataset named 'hotel_bookings.zip' in your Colab environment
-!unzip archive.zip
 
 # Load the dataset using pandas
 df = pd.read_csv('/content/llm-booking-analytics/hotel_bookings.csv')  # Replace with your actual file name
